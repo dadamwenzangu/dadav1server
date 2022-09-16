@@ -10,25 +10,29 @@ from mongoengine import connect
 
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from mongoengine.queryset.visitor import Q
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 jwt = JWTManager(app)
 CORS(app)
 
+
+load_dotenv()
+#connect_string=f'mongodb+srv://admin-s:<password>@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority' 
+
+
+
+
 # JWT Config
 app.config['MONGODB_SETTINGS'] = {
-    'host':'mongodb://localhost/Dada001'
+    'host':'mongodb+srv://admin-s:passc^d22@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority'
 }
 
 app.config["JWT_SECRET_KEY"] = "dada11secrety"
 
 db = MongoEngine(app)
 
-"""client = MongoClient('localhost', 27017)
 
-
-db = client.Dada001
-Users = db.Users"""
 
 class User(db.Document):
     first_name = db.StringField(required=True)
@@ -39,7 +43,12 @@ class User(db.Document):
     password = db.StringField()
     curr_loc = db.PointField()
     join_date = db.DateTimeField(default=datetime.datetime.utcnow)
-    
+
+@app.route('/',methods=('GET', 'POST'))
+def  home():
+        return 'Calm Down'
+
+
 @app.route('/new_user',methods=('GET', 'POST'))
 def  create_new_user():
     #users = User.objects()
