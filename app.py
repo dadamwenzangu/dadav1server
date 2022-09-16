@@ -75,8 +75,7 @@ def  get_helpers():
         user= User.objects.filter(Q(point__near=[coordinates] ,point__max_distance=2)  and Q(email__ne=email))[:3]
 
         print(len(user))
-        #output = {'user_name' : user.first_name}
-        #helpers = user.dict()
+        
         print(user)
 
         return user.to_json(), 200
