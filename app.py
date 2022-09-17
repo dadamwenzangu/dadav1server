@@ -25,8 +25,8 @@ load_dotenv()
 
 # JWT Config
 app.config['MONGODB_SETTINGS'] = {
-    #'host':'mongodb+srv://admin-s:passc^d22@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority'
-    'host':'mongodb://localhost/Dada001'
+    'host':'mongodb+srv://admin-s:passc^d22@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority'
+    #'host':'mongodb://localhost/Dada001'
 }
 
 app.config["JWT_SECRET_KEY"] = "dada11secrety"
