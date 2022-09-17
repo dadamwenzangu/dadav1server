@@ -25,7 +25,8 @@ load_dotenv()
 
 # JWT Config
 app.config['MONGODB_SETTINGS'] = {
-    'host':'mongodb+srv://admin-s:passc^d22@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority'
+    #'host':'mongodb+srv://admin-s:passc^d22@dada.d383gqt.mongodb.net/?retryWrites=true&w=majority'
+    'host':'mongodb://localhost/Dada001'
 }
 
 app.config["JWT_SECRET_KEY"] = "dada11secrety"
@@ -83,11 +84,29 @@ def  get_helpers():
         #user= User.objects.filter(Q(curr_loc__near={"type": "Point", "coordinates": coordinates} ,curr_loc__max_distance=200)  and Q(email__ne=email))
         user= User.objects.filter(Q(point__near=[coordinates] ,point__max_distance=2)  and Q(email__ne=email))[:3]
 
-        print(len(user))
+      #  print(len(user))
         
-        print(user)
+        #print(user)
+        #print([ i.to_json() for i in user] )
+        #print(user)
 
-        return user.to_json(), 200
+        user = user.to_json()
+        userd = json.loads(user)
+        for i in userd:
+            del i['age']
+            del i['curr_loc']
+            del i['join_date']
+            del i['password']
+
+        
+        result = {}
+        #result['user_id'] =  userd['_id']['$oid']
+        result = userd[:4]
+        
+
+        
+        
+        return jsonify(result) , 200
      
     
         
