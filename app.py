@@ -144,6 +144,7 @@ def  get_helpers():
             del i['age']
             del i['curr_loc']
             del i['date_created']
+            del i['date_edited']
             del i['password']
             del i['_id']
 
